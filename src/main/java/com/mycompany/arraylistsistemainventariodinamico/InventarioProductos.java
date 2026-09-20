@@ -5,92 +5,104 @@ import java.util.ArrayList;
 
 public class InventarioProductos {
 
-    public static Scanner sc;
-    public static ArrayList<String> listaProductos = new ArrayList<>();
+   public static Scanner sc;
+    public static ArrayList<String> ListaProductos = new ArrayList<>();
     public static int opcion = 0;
+    
 
     public static void main(String[] args) {
-        //Use rraylist y solicite 5 cosas al usuario para que ingrese
-        //Debo usar los metodos del arraylist para demostrar su funcionalidad
+
         sc = new Scanner(System.in);
-        System.out.println("--Bienvenido al sistema de registro de inventario--");
-        System.out.print("ingrese 5 productos");
+        System.out.println("---Bienvenido al sistema inventario de registro---");
+        System.out.println("Ingrese 5 productos:");
+
         for (int i = 0; i < 5; i++) {
-            System.out.println("Producto #" + (i + 1) + "  :");
+            System.out.println("Producto#" + (i + 1) + ":");
             String nombreProducto = sc.nextLine();
-            listaProductos.add(nombreProducto);
+            ListaProductos.add(nombreProducto);
 
         }
 
         do {
-            System.out.println("Que desea hacer?");
-            System.out.println("1.Ver todos los productos");
-            System.out.println("2.Agregar productos");
+            System.out.println("Que deseas hacer?");
+            System.out.println("1.Ver Productos");
+            System.out.println("2.Agregar Producto");
             System.out.println("3.Editar Producto");
             System.out.println("4.Eliminar Producto");
             System.out.println("0.Salir");
-            System.out.println("Seleccione una opcion del menu");
+            System.out.println("Seleccione una opcion  del menu");
             opcion = sc.nextInt();
 
-            System.out.println("******************+");
+            System.out.println("********");
             switch (opcion) {
-                case 1 ->
-                    verProductos();
-                case 2 ->
-                    agregarProductos();
-                case 3 ->
-                    System.out.println("EDITANDO PRODUCTO");
-                case 4 ->
-                    System.out.println("ELIMINANDO PRODUCTO");
+                case 1:
+                    verProducto();
+                    break;
+                case 2:
+                    agregarProducto();
+                    break;
+                case 3:
+                    editarProducto();
+                    break;
+                case 4:
+                    eliminarProducto();
+                    break;
 
             }
-
         } while (opcion != 0);
 
-        System.out.println("FIN DEL PROGRAMA, GRACIAS");
-
+        System.out.println("----FIN DEL PROGRAMA----");
     }
 
-    public static void verProductos() {
-        System.out.println("********************");
-        System.out.println("***Lista de Prodductos******");
-        for (int i = 0; i < listaProductos.size(); i++) {
+    public static void verProducto() {
+        System.out.println("*******");
+        System.out.println("--Lista de Productos---");
 
-            System.out.println(listaProductos.get(i));
+        for (int i = 0; i < ListaProductos.size(); i++) {
+            System.out.println(ListaProductos.get(i));
+
         }
-
     }
 
-    public static void agregarProductos() {
-        System.out.println("Cuantos productos desea agregar:");
+    public static void agregarProducto() {
+        System.out.println("Cuantos productos dessea agregar:");
         int cantidad = sc.nextInt();
+        sc.nextLine();
+
         for (int i = 0; i < cantidad; i++) {
-            System.out.println("Nombre Producto");
+            System.out.println("Nombre Producto:");
             String nuevoProducto = sc.nextLine();
-            listaProductos.add(nuevoProducto);
+            ListaProductos.add(nuevoProducto);
         }
     }
 
-    public static void editarProductos() {
-        System.out.println("De esta lista de productos cual deseas modificar");
-        for (int i = 0; i < listaProductos.size(); i++) {
-            System.out.println("" + i + "->" + listaProductos.get(i));
+    public static void editarProducto() {
+        System.out.println("de esta lista de productos cual deseea moddificar");
+        for (int i = 0; i < ListaProductos.size(); i++) {
+            System.out.println("" + i + "->" + ListaProductos.get(i));
         }
-
-        System.out.println("Elija una de las opciones a editar:");
+        System.out.println("Elija una de las opciones a editar ");
         int opcionEditar = sc.nextInt();
-        
         sc.nextLine();
-        
-        System.out.println("Con que nombre desea reemplazarlo?");
+
+        System.out.println("con que nombre desea reemplazarlo?");
         String nuevoNombre = sc.nextLine();
-
-        listaProductos.set(opcionEditar, nuevoNombre);
-
+        ListaProductos.set(opcionEditar, nuevoNombre);
+        sc.nextLine();
     }
 
     public static void eliminarProducto() {
+        System.out.println("que producto deseea eliminar?");
+
+        for (int i = 0; i < ListaProductos.size(); i++) {
+            System.out.println(i + " -> " + ListaProductos.get(i));
+        }
+        System.out.println("Elija el producto que desea eliminar:");
+        int opcionEliminar = sc.nextInt();
+
+        ListaProductos.remove(opcionEliminar);
+
+        System.out.println("se eliminado correctamente.");
 
     }
-
 }
